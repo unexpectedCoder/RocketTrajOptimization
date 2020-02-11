@@ -89,12 +89,12 @@ class Rocket2D:
         :param optim_range: list of min and max values of the optimization parameters (use list of zip pairs)
         """
         # Optimization
+        print('Optimization in process. It can take some time...')
         optim = dual_annealing(self.__start_optimization, optim_range, maxiter=100, args=[Traj(self.__exclude_man_dive())])
         self.optim_params.set(optim.x[0], optim.x[1], optim.x[2])
-        print("\nMessage from <Rocket2D>: trajectory is optimized successfully.\n")
-        print(self.optim_params)
-
         self.reset()
+        print("Trajectory is optimized successfully :)")
+        print(self.optim_params)
 
     def start(self, trajectory=None, rough=False, max_step=0.2):
         """
@@ -105,6 +105,9 @@ class Rocket2D:
         :type rough: bool
         :param max_step: max step for the ODE's solver
         """
+        if not rough:
+            print('Calculation optimized trajectory. It can take some time...')
+
         traj = copy(self.traj) if trajectory is None else copy(trajectory)
         # Checking and preparing
         traj_names = traj.names()
@@ -167,7 +170,7 @@ class Rocket2D:
                 traj.next()
                 continue
             if part.name == traj_types[3]:                                              # dive
-                if self.state.coords.x[0] > self.constraints.max_dist and self.state.coords.x[1] > 0.0:
+                if self.state.coords.x[0] > self.constraints.max_dist and self.state.coords.x[1] > 500.0:
                     t_span = np.array([self.state.t, self.state.t + 50.0])
                     self.maneuver.set(self.state.Theta, part.Theta_end, part.overload_share)
 
@@ -181,6 +184,9 @@ class Rocket2D:
 
                     self.__move_passive(t_span, max_step / 2, events)
                 break       # Dive is always the latest trajectory's part
+
+        if rough is False:
+            print(self.result)
 
     def update(self, t: np.ndarray, y: np.ndarray):
         """

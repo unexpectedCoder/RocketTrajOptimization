@@ -204,7 +204,7 @@ class Result2D:
         return Result2D(self.t, self.x, self.y, self.V, self.mu, self.Theta)
 
     def __str__(self):
-        return "Results of the solution:" \
+        return " Results of the solution:" \
                f"\n - time of the rocket's flight, s: {round(self.t[-1], self.out_acc)}" \
                f"\n - max velocity, m/s: {round(np.max(self.V), self.out_acc)}" \
                f"\n - finish distance, km: {round(self.x[-1] * 1e-3, self.out_acc)}" \
