@@ -1,0 +1,6 @@
+ Results of the solution:
+ - time of the rocket's flight, s: 383.703
+ - max velocity, m/s: 2739.635
+ - finish distance, km: 500.0
+ - max height, km: 101.567
+ - total relative propellant mass: 0.7

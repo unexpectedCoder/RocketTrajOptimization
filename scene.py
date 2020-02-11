@@ -1,5 +1,5 @@
 from atmosphere import Atmosphere
-import data_read
+import data_read_write
 
 
 class Scene2D:
@@ -10,7 +10,7 @@ class Scene2D:
         :param xml_traj: trajectory's XML data file's path
         """
         self.atmo = Atmosphere()
-        self.rocket = data_read.create_rocket(self.atmo, xml_rocket, xml_traj)
+        self.rocket = data_read_write.create_rocket(self.atmo, xml_rocket, xml_traj)
         self.is_rocket_calc = False
 
     # Public
@@ -21,8 +21,10 @@ class Scene2D:
         :type xml_optim: str
         """
         if xml_optim is not None:
-            self.rocket.optimize_traj(data_read.init_optim_range(xml_optim))
-        self.rocket.start()
+            optim = self.rocket.optimize_traj(data_read_write.init_optim_range(xml_optim))
+            data_read_write.write_optim(optim)
+        results = self.rocket.start()
+        data_read_write.write_results2d(results)
         self.is_rocket_calc = True
 
     def show_atmosphere(self):

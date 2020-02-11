@@ -1,0 +1,4 @@
+ Optimal parameters:
+ - angle of inclination of the velocity vector to the horizon, deg: 57.372
+ - part of time of the starting part: 0.75
+ - height of the beginning march operating mode, km: 56.317

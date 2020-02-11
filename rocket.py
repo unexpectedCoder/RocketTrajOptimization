@@ -83,7 +83,7 @@ class Rocket2D:
         return output
 
     # Public
-    def optimize_traj(self, optim_range: list):
+    def optimize_traj(self, optim_range: list) -> OptimParams:
         """
         Optimizes the rocket's trajectory using dual annealing algorithm.
         :param optim_range: list of min and max values of the optimization parameters (use list of zip pairs)
@@ -95,6 +95,8 @@ class Rocket2D:
         self.reset()
         print("Trajectory is optimized successfully :)")
         print(self.optim_params)
+
+        return self.optim_params
 
     def start(self, trajectory=None, rough=False, max_step=0.2):
         """
@@ -187,6 +189,7 @@ class Rocket2D:
 
         if rough is False:
             print(self.result)
+        return self.result
 
     def update(self, t: np.ndarray, y: np.ndarray):
         """

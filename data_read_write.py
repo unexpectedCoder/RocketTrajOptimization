@@ -1,4 +1,4 @@
-from htypes import Coordinates, Compartment, Constraints, Parameters, StartConds
+from htypes import *
 from engine import Engine
 from traj import *
 from rocket import Rocket2D
@@ -7,6 +7,7 @@ from lxml import etree
 import numpy as np
 
 
+# Reading
 def create_rocket(atmo, xml_rocket: str, xml_traj: str):
     """
     Creates rocket's object using XML data file.
@@ -171,3 +172,22 @@ def check_optim_xml(root):
     if root.find('max') is None:
         return False
     return True
+
+
+# Writing
+def write_results2d(results: Result2D):
+    """
+    Writes the rocket trajectory's calculation results to text file.
+    :param results: results of calculation
+    """
+    with open("results/results.txt", 'w') as file:
+        file.write(str(results))
+
+
+def write_optim(optim: OptimParams):
+    """
+    Writes the optimization's values to text file.
+    :param optim: optimal parameters of rocket's trajectory
+    """
+    with open("results/optim.txt", 'w') as file:
+        file.write(str(optim))
