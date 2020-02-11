@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+	<!-- Starting conditions: -->
+	<!-- t - time; x,y - coordinates, m; V - velocity, m/s; -->
+	<!-- mu - relative propellant mass; Theta - angle of the inclination of the velocity vector to the horizon, deg -->
+	<StartConds t="0.0" x="0.0" y="0.0" V="0.0" mu="0.0" Theta="90.0"/>
+	<!-- Rocket's compartments -->
+	<Compartments>
+		<Compartment name="Warhead" mass="500.0"/>
+		<Compartment name="Control" mass="50.0"/>
+		<Compartment name="Useful" mass="550.0"/>
+	</Compartments>
+	<!-- Constraints units: distance and height - [km], overload - [units of g] -->
+	<Constraints max_dist="500.0" max_height="110.0" max_ny="32.0"/>
+	<Engine>
+		<!-- n = 1, 2, ... - engine's operating mode -->
+		<Mode>
+			<!-- Thrust-to-weight ratio -->
+			<eta>5.0</eta>
+			<!-- Single impulse, m/s -->
+			<imp1>2700.0</imp1>
+			<!-- Pressure in the combustion chamber (p0), MPa -->
+			<p0>7.0</p0>
+			<!-- Nozzle's outlet pressure, MPa-->
+			<p_outlet>0.07</p_outlet>
+			<!-- Adiabatic index of the cumbustion products (k) -->
+			<k>1.2</k>
+			<!-- Relative propellant mass for determine end of this operating mode -->
+			<break_mu>0.5</break_mu>
+		</Mode>
+		<Mode>
+			<eta>3.0</eta>
+			<imp1>2500.0</imp1>
+			<p0>5.0</p0>
+			<p_outlet>0.07</p_outlet>
+			<k>1.2</k>
+			<break_mu>0.7</break_mu>
+		</Mode>
+	</Engine>
+	<!-- Other rocket's parameters -->
+	<!-- icx - AD shape factor; beta - mass excellence; q_m - middle load, Pa; -->
+	<!-- lambda_l - lengthening of corpus; t_start - time of the starting trajectory part, s -->
+	<Parameters icx="1.5" beta="1.3" q_m="70000.0" lambda_l="15.0"/>
+</root>

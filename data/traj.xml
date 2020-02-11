@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Events: -->
+<!-- time, theta, hit_ground, max_dist, max_height, march_height, mu -->
+
+<!-- Attributes: -->
+<!-- name			- name (type) of trajectory's part -->
+<!-- t				- time of the motion, s -->
+<!-- kt				- part of time of motion on trajectory's part -->
+<!-- Theta			- angle of the inclination to the horizon, deg -->
+<!-- overload_share	- transverse overload share -->
+<!-- events			- events to interrupt the ODE system solution -->
+
+<!-- name = const_theta, man, passive, dive -->
+
+<Trajectory>
+	<Part name="const_theta" t="30.0" Theta="None" overload_share="None" events="None"/>
+	<Part name="man" t="30.0" Theta="45.0" overload_share="0.7" events="theta"/>
+	<Part name="const_theta" t="30.0" Theta="None" overload_share="None" events="time mu"/>
+	<Part name="passive" t="None" Theta="None" overload_share="None" events="hit_ground max_dist max_height march_height"/>
+	<Part name="man" t="None" Theta="0.0" overload_share="0.8" events="theta"/>
+	<Part name="const_theta" t="None" Theta="None" overload_share="None" events="max_dist mu"/>
+	<Part name="passive" t="None" Theta="None" overload_share="None" events="max_dist hit_ground"/>
+	<Part name="dive" t="None" Theta="-90.0" overload_share="1.0" events="theta hit_ground"/>
+</Trajectory>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Optimization values ranges -->
+<!-- Theta		- angle of the inclination to the horizon, deg -->
+<!-- k_t		- starting time ratio -->
+<!-- h_march	- height of the beginning trajectory's march part, km -->
+<root>
+	<min Theta="20.0" k_t="0.25" h_march="30.0"/>
+	<max Theta="70.0" k_t="0.75" h_march="60.0"/>
+</root>
